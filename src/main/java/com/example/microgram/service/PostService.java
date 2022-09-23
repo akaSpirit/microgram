@@ -1,7 +1,7 @@
 package com.example.microgram.service;
 
 import com.example.microgram.dao.PostDao;
-import com.example.microgram.entity.Post;
+import com.example.microgram.dto.PostDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +12,13 @@ import java.util.List;
 public class PostService {
     private final PostDao postDao;
 
-    public List<Post> getPosts() {return postDao.getAllPosts();}
+    public List<PostDto> getPosts() {return postDao.getAllPosts();}
+
+    public List<PostDto> getUserPosts(int user_id) {
+        return postDao.findUserPosts(user_id);
+    }
+
+    public List<PostDto> getPostsBySubs(int user_id) {
+        return postDao.findPostsBySubs(user_id);
+    }
 }

@@ -1,6 +1,6 @@
 package com.example.microgram.dao;
 
-import com.example.microgram.entity.Sub;
+import com.example.microgram.dto.SubDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,8 +13,8 @@ import java.util.List;
 public class SubDao {
     private final JdbcTemplate jdbcTemplate;
 
-    public List<Sub> getAllSubs() {
+    public List<SubDto> getAllSubs() {
         String sql = "select * from subs";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Sub.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(SubDto.class));
     }
 }

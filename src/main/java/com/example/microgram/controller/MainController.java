@@ -20,4 +20,19 @@ public class MainController {
     public ResponseEntity<String> createPostsTable() {
         return new ResponseEntity<>(dataBaseService.shouldCreatePostTable(), HttpStatus.OK);
     }
+
+    @GetMapping("/createcomments")
+    public ResponseEntity<String> createCommentsTable() {
+        return new ResponseEntity<>(dataBaseService.shouldCreateCommentTable(), HttpStatus.OK);
+    }
+
+    @GetMapping("/createlikes")
+    public ResponseEntity<String> createLikesTable() {
+        return new ResponseEntity<>(dataBaseService.shouldCreateLikeTable(), HttpStatus.OK);
+    }
+
+    @GetMapping("/createsubs")
+    public ResponseEntity<String> createSubsTable() {
+        return new ResponseEntity<>(dataBaseService.shouldCreateSubTable(), HttpStatus.OK);
+    }
 }

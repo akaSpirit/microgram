@@ -1,7 +1,6 @@
 package com.example.microgram.dao;
 
 import com.example.microgram.dto.UserDto;
-import com.example.microgram.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,18 +18,18 @@ public class UserDao {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(UserDto.class));
     }
 
-    public User findByName(String fullname) {
+    public UserDto findByName(String fullname) {
         String sql = "select * from users where fullname = ?";
-        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), fullname);
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(UserDto.class), fullname);
     }
 
-    public User findByNickname(String nickname) {
+    public UserDto findByNickname(String nickname) {
         String sql = "select * from users where nickname = ?";
-        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), nickname);
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(UserDto.class), nickname);
     }
 
-    public User findByEmail(String email) {
+    public UserDto findByEmail(String email) {
         String sql = "select * from users where email = ?";
-        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), email);
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(UserDto.class), email);
     }
 }

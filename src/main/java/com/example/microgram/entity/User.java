@@ -5,9 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -19,17 +16,14 @@ public class User {
     private String nickname;
     private String email;
     private String password;
-    private List<Post> posts;
-    private List<User> followers;
-    private List<User> following;
+    private int posts;
+    private int followers;
+    private int following;
 
     public User(String fullname, String nickname, String email, String password) {
         this.fullname = fullname;
         this.nickname = nickname;
         this.email = email;
         this.password = password;
-        this.posts = new ArrayList<>();
-        this.followers = new ArrayList<>();
-        this.following = new ArrayList<>();
     }
 }

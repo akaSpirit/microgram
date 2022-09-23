@@ -24,18 +24,23 @@ public class UserController {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
 
-    @GetMapping("/findname/{fullname}")
-    public ResponseEntity<User> getUserByName(@PathVariable String fullname) {
+    @GetMapping("/fullname/{fullname}")
+    public ResponseEntity<UserDto> getUserByName(@PathVariable String fullname) {
         return new ResponseEntity<>(userService.getUserByName(fullname), HttpStatus.OK);
     }
 
-    @GetMapping("/findnick/{nickname}")
-    public ResponseEntity<User> getUserByNickname(@PathVariable String nickname) {
+    @GetMapping("/nickname/{nickname}")
+    public ResponseEntity<UserDto> getUserByNickname(@PathVariable String nickname) {
         return new ResponseEntity<>(userService.getUserByNickname(nickname), HttpStatus.OK);
     }
 
-    @GetMapping("/findemail/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UserDto> getUserByEmail(@PathVariable String email) {
         return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);
+    }
+
+    @GetMapping("/exist/{email}")
+    public ResponseEntity<String> existUserByEmail(@PathVariable String email){
+        return new ResponseEntity<>(userService.existsUserByEmail(email), HttpStatus.OK);
     }
 }

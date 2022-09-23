@@ -1,6 +1,5 @@
 package com.example.microgram.service;
 
-import com.example.microgram.dao.PostDao;
 import com.example.microgram.dao.UserDao;
 import com.example.microgram.entity.User;
 import lombok.RequiredArgsConstructor;

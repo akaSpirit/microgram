@@ -15,15 +15,23 @@ public class UserService {
 
     public List<UserDto> getUsers() { return userDao.getAllUsers(); }
 
-    public User getUserByName(String fullname) {
+    public UserDto getUserByName(String fullname) {
         return userDao.findByName(fullname);
     }
 
-    public User getUserByNickname(String nickname) {
+    public UserDto getUserByNickname(String nickname) {
         return userDao.findByNickname(nickname);
     }
 
-    public User getUserByEmail(String email) {
+    public UserDto getUserByEmail(String email) {
         return userDao.findByEmail(email);
+    }
+
+    public String existsUserByEmail(String email) {
+        if (userDao.findByEmail(email) != null) {
+            return "There's a user with email: " + email;
+        }
+        return "There's no user with email: " + email;
+
     }
 }

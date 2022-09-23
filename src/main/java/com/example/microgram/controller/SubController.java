@@ -1,5 +1,6 @@
 package com.example.microgram.controller;
 
+import com.example.microgram.dto.SubDto;
 import com.example.microgram.entity.Sub;
 import com.example.microgram.service.SubService;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ public class SubController {
     private final SubService subService;
 
     @GetMapping
-    public ResponseEntity<List<Sub>> subs() {
+    public ResponseEntity<List<SubDto>> subs() {
         return new ResponseEntity<>(subService.getSubs(), HttpStatus.OK);
     }
 }
