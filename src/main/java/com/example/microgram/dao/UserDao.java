@@ -1,5 +1,6 @@
 package com.example.microgram.dao;
 
+import com.example.microgram.dto.UserDto;
 import com.example.microgram.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -13,9 +14,9 @@ import java.util.List;
 public class UserDao {
     private final JdbcTemplate jdbcTemplate;
 
-    public List<User> getAllUsers() {
+    public List<UserDto> getAllUsers() {
         String sql = "select * from users";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(UserDto.class));
     }
 
     public User findByName(String fullname) {

@@ -1,10 +1,12 @@
 package com.example.microgram.service;
 
+import com.example.microgram.utils.Generator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -18,10 +20,27 @@ public class DataBaseService {
         jdbcTemplate.execute("insert into users VALUES (3, 'Trystan North', 'trystan', 'trystan@gmail.com', 'trystan')");
     }
 
-    public String shouldCreateTable() {
+    public String shouldCreateUserTable() {
         try {
             createUserTable();
             jdbcTemplate.execute("select * from users");
+            return "OK";
+        } catch (SQLException e) {
+            return e.getMessage();
+        }
+    }
+
+    private void createPostTable() throws SQLException {
+        jdbcTemplate.execute("create table if not exists posts (id INTEGER PRIMARY KEY, photo TEXT, description TEXT, postDateTime TEXT)");
+        jdbcTemplate.execute("insert into posts VALUES (1, 'photo', 'description', 'postDateTime')");
+        jdbcTemplate.execute("insert into posts VALUES (2, 'photo', 'description', 'postDateTime')");
+        jdbcTemplate.execute("insert into posts VALUES (3, 'photo', 'description', 'postDateTime')");
+    }
+
+    public String shouldCreatePostTable() {
+        try {
+            createPostTable();
+            jdbcTemplate.execute("select * from posts");
             return "OK";
         } catch (SQLException e) {
             return e.getMessage();
