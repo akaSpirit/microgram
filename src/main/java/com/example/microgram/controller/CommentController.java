@@ -21,9 +21,9 @@ public class CommentController {
         return new ResponseEntity<>(commentService.getComments(), HttpStatus.OK);
     }
 
-    @GetMapping("/add/{user_id}&{post_id}")
-    public ResponseEntity<String> addNewComment(@PathVariable int user_id, @PathVariable int post_id) {
-        return new ResponseEntity<>(commentService.addNewComment(user_id, post_id), HttpStatus.OK);
+    @PostMapping("/add/{comment}&{user_id}&{post_id}")
+    public ResponseEntity<String> addNewComment(@PathVariable String comment, @PathVariable int user_id, @PathVariable int post_id) {
+        return new ResponseEntity<>(commentService.addNewComment(comment, user_id, post_id), HttpStatus.OK);
     }
 
     @GetMapping("/delete/{id}")

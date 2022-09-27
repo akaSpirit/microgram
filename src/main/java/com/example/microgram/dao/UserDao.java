@@ -32,4 +32,19 @@ public class UserDao {
         String sql = "select * from users where email = ?";
         return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(UserDto.class), email);
     }
+
+    public String registration(String fullname, String nickname, String email, String password) {
+        String sql = "insert into users(fullname, nickname, email, password) VALUES (?, ?, ?, ?)";
+        var result = jdbcTemplate.update(sql, fullname, nickname, email, password);
+        if (result == 0) {
+            return "try again";
+        }
+        return "registration successful";
+    }
+
+    public UserDto auth(String nickname, String password) {
+        String sql = "select * from users where nickname = ? and password = ?";
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(UserDto.class), nickname, password);
+    }
+
 }

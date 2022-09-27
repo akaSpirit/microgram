@@ -33,7 +33,7 @@ public class PostImageDao {
         jdbcTemplate.update(con -> {
             PreparedStatement ps = con.prepareStatement(sql, new String[]{"id"});
             ps.setString(1, image.getName());
-            ps.setBytes(2, image.getPosterData());
+            ps.setBytes(2, image.getImageData());
             return ps;
         }, keyHolder);
         return keyHolder.getKey().longValue();

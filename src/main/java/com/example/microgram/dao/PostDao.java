@@ -1,6 +1,5 @@
 package com.example.microgram.dao;
 
-import com.example.microgram.dto.CommentDto;
 import com.example.microgram.dto.PostDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -34,5 +33,19 @@ public class PostDao {
                 "inner join users u on u.id = s.follower_id\n" +
                 "where u.id = ?";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PostDto.class), user_id);
+    }
+
+    public int deleteById(int id) {
+        String sql = "delete from posts where id = ?";
+        return jdbcTemplate.update(sql, id);
+    }
+
+    public String addPost(String photo, String description) {
+        String sql = "insert into posts(photo, description) VALUES (?, ?, current_timestamp)";
+        var result = jdbcTemplate.update(sql, photo, description);
+        if (result == 0) {
+            return "user not added new post";
+        }
+        return "user added new post";
     }
 }

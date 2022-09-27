@@ -12,8 +12,8 @@ public class PostImage {
     private Long id;
     private String name;
 
-    @JsonProperty("poster_data")
-    private byte[] posterData;
+    @JsonProperty("image_data")
+    private byte[] imageData;
 
 
     public PostImage generateNoImage(){

@@ -1,15 +1,11 @@
 package com.example.microgram.controller;
 
 import com.example.microgram.dto.UserDto;
-import com.example.microgram.entity.User;
 import com.example.microgram.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,5 +38,16 @@ public class UserController {
     @GetMapping("/exist/{email}")
     public ResponseEntity<String> existUserByEmail(@PathVariable String email){
         return new ResponseEntity<>(userService.existsUserByEmail(email), HttpStatus.OK);
+    }
+
+    @GetMapping("/register/{fullname}&{nickname}&{email}&{password}")
+    public ResponseEntity<String> registration(@PathVariable String fullname, @PathVariable String nickname,
+                                                @PathVariable String email, @PathVariable String password) {
+        return new ResponseEntity<>(userService.registration(fullname, nickname, email, password), HttpStatus.OK);
+    }
+
+    @GetMapping("/auth/{nickname}&{password}")
+    public ResponseEntity<UserDto> auth(@PathVariable String nickname, @PathVariable String password) {
+        return new ResponseEntity<>(userService.auth(nickname, password), HttpStatus.OK);
     }
 }

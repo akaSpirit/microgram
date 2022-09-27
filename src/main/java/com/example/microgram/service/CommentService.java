@@ -17,8 +17,8 @@ public class CommentService {
         return commentDao.getAllComments();
     }
 
-    public String addNewComment(int user_id, int post_id) {
-        return commentDao.addNewComment(user_id, post_id);
+    public String addNewComment(String comment, int user_id, int post_id) {
+        return commentDao.addNewComment(comment, user_id, post_id);
     }
 
     public String deleteComment(int id) {

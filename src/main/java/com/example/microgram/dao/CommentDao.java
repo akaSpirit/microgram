@@ -19,9 +19,9 @@ public class CommentDao {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CommentDto.class));
     }
 
-    public String addNewComment(int user_id, int post_id) {
-        String sql = "insert into comments(text, commentDateTime, user_id, post_id) VALUES ('new comment', current_timestamp, ?, ?)";
-        var result = jdbcTemplate.update(sql, user_id, post_id);
+    public String addNewComment(String text, int user_id, int post_id) {
+        String sql = "insert into comments(text, commentDateTime, user_id, post_id) VALUES (?, current_timestamp, ?, ?)";
+        var result = jdbcTemplate.update(sql, text, user_id, post_id);
         if (result == 0) {
             return "user not added new comment";
         }
@@ -32,7 +32,6 @@ public class CommentDao {
         String sql = "delete\n" +
                 "from comments\n" +
                 "where id = ?;\n";
-//        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CommentDto.class), id);
         var result = jdbcTemplate.update(sql, id);
         return "comment deleted";
     }

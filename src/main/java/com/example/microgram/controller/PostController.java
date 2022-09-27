@@ -5,10 +5,7 @@ import com.example.microgram.service.PostService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,5 +28,17 @@ public class PostController {
     @GetMapping("/postsub/{user_id}")
     public ResponseEntity<List<PostDto>> getPostsBySubs(@PathVariable int user_id) {
         return new ResponseEntity<>(postService.getPostsBySubs(user_id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("{postId}")
+    public ResponseEntity<Void> deletePost(@PathVariable int postId) {
+        if (postService.deletePost(postId))
+            return ResponseEntity.noContent().build();
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/add/{photo}&{description}")
+    public ResponseEntity<String> addPost(@PathVariable String photo, @PathVariable String description) {
+        return new ResponseEntity<>(postService.addPost(photo, description), HttpStatus.OK);
     }
 }

@@ -31,18 +31,18 @@ public class PostImageService {
             //  which will be processed on controller layer
         }
 
-        PostImage image = PostImage.builder().posterData(data).build();
+        PostImage image = PostImage.builder().imageData(data).build();
 
-        var savedMovieId = postImageDao.save(image);
+        var savedPostId = postImageDao.save(image);
 
         return PostImageDto.builder()
-                .imageId(savedMovieId)
+                .imageId(savedPostId)
                 .build();
     }
 
     public Resource getById(Long imageId) {
         PostImage postImage = postImageDao.findById(imageId)
-                .orElseThrow(() -> new ResourceNotFoundException("Movie Image with " + imageId + " doesn't exists!"));
-        return new ByteArrayResource(postImage.getPosterData());
+                .orElseThrow(() -> new ResourceNotFoundException("Post Image with " + imageId + " doesn't exists!"));
+        return new ByteArrayResource(postImage.getImageData());
     }
 }

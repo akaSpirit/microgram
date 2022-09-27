@@ -34,4 +34,12 @@ public class UserService {
         return "There's no user with email: " + email;
 
     }
+
+    public String registration(String fullname, String nickname, String email, String password) {
+        return userDao.registration(fullname, nickname, email, password);
+    }
+
+    public UserDto auth(String nickname, String password) {
+        return userDao.auth(nickname, password);
+    }
 }

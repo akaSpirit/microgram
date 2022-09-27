@@ -21,4 +21,13 @@ public class PostService {
     public List<PostDto> getPostsBySubs(int user_id) {
         return postDao.findPostsBySubs(user_id);
     }
+
+    public boolean deletePost(int id) {
+        postDao.deleteById(id);
+        return true;
+    }
+
+    public String addPost(String photo, String description) {
+        return postDao.addPost(photo, description);
+    }
 }
