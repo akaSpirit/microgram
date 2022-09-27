@@ -39,7 +39,7 @@ public class PostController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PostDto addMovie(@RequestBody PostDto postDto) {
+    public PostDto addPost(@RequestBody PostDto postDto) {
         return postService.addPost(postDto);
     }
 }
