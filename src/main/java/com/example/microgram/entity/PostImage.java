@@ -15,7 +15,6 @@ public class PostImage {
     @JsonProperty("image_data")
     private byte[] imageData;
 
-
     public PostImage generateNoImage(){
         return PostImage.builder().name("-no-image").build();
     }

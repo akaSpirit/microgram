@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post {
-    private String photo = "";
+    private String photo;
     private String description = Generator.makeDescription();
     private LocalDateTime postDateTime = LocalDateTime.now();
 }

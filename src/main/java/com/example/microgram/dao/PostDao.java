@@ -1,11 +1,13 @@
 package com.example.microgram.dao;
 
 import com.example.microgram.dto.PostDto;
+import com.example.microgram.entity.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 @Component
@@ -40,12 +42,14 @@ public class PostDao {
         return jdbcTemplate.update(sql, id);
     }
 
-    public String addPost(String photo, String description) {
-        String sql = "insert into posts(photo, description) VALUES (?, ?, current_timestamp)";
-        var result = jdbcTemplate.update(sql, photo, description);
-        if (result == 0) {
-            return "user not added new post";
-        }
-        return "user added new post";
+    public void save(Post post) {
+        String sql = "insert into posts(photo, description) " +
+                "values(?,?,current_timestamp)";
+        jdbcTemplate.update(con -> {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, post.getPhoto());
+            ps.setString(2, post.getDescription());
+            return ps;
+        });
     }
 }

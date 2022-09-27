@@ -2,6 +2,7 @@ package com.example.microgram.service;
 
 import com.example.microgram.dao.PostDao;
 import com.example.microgram.dto.PostDto;
+import com.example.microgram.entity.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,12 @@ public class PostService {
         return true;
     }
 
-    public String addPost(String photo, String description) {
-        return postDao.addPost(photo, description);
+    public PostDto addPost(PostDto postDto) {
+        var post = Post.builder()
+                .photo(postDto.getPhoto())
+                .description(postDto.getDescription())
+                .build();
+        postDao.save(post);
+        return PostDto.from(post);
     }
 }

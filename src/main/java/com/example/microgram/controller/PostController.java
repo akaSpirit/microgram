@@ -4,6 +4,7 @@ import com.example.microgram.dto.PostDto;
 import com.example.microgram.service.PostService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,8 +38,8 @@ public class PostController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/add/{photo}&{description}")
-    public ResponseEntity<String> addPost(@PathVariable String photo, @PathVariable String description) {
-        return new ResponseEntity<>(postService.addPost(photo, description), HttpStatus.OK);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public PostDto addMovie(@RequestBody PostDto postDto) {
+        return postService.addPost(postDto);
     }
 }

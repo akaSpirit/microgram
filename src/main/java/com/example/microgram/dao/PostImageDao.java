@@ -27,7 +27,7 @@ public class PostImageDao {
     }
 
     public Long save(PostImage image) {
-        String sql = "insert into post_image(name, poster_data) " +
+        String sql = "insert into post_image(name, image_data) " +
                 "values(?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
