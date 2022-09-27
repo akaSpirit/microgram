@@ -20,4 +20,8 @@ public class CommentService {
     public String addNewComment(int user_id, int post_id) {
         return commentDao.addNewComment(user_id, post_id);
     }
+
+    public String deleteComment(int id) {
+        return commentDao.deleteComment(id);
+    }
 }

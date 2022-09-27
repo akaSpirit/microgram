@@ -1,5 +1,6 @@
 package com.example.microgram.dao;
 
+import com.example.microgram.dto.CommentDto;
 import com.example.microgram.dto.PostDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

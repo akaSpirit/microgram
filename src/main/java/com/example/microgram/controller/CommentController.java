@@ -6,10 +6,7 @@ import com.example.microgram.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,11 @@ public class CommentController {
     @GetMapping("/add/{user_id}&{post_id}")
     public ResponseEntity<String> addNewComment(@PathVariable int user_id, @PathVariable int post_id) {
         return new ResponseEntity<>(commentService.addNewComment(user_id, post_id), HttpStatus.OK);
+    }
+
+    @GetMapping("/delete/{id}")
+    public ResponseEntity<String> deleteComment(@PathVariable int id) {
+        return new ResponseEntity<>(commentService.deleteComment(id), HttpStatus.OK);
     }
 
 }
